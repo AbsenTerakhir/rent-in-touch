@@ -25,37 +25,44 @@
         </thead>
 
         <tbody>
-
             @forelse ($tenants as $tenant)
-
                 <tr>
                     <td>{{ $tenant->id_tenant }}</td>
-
                     <td>{{ $tenant->nama_rental }}</td>
-
                     <td>{{ $tenant->subdomain }}</td>
-
                     <td>{{ $tenant->telepon }}</td>
-
                     <td>{{ $tenant->email }}</td>
-
                     <td>{{ $tenant->status }}</td>
 
-                  <td>
-    <a href="{{ route('tenant.edit', $tenant->id_tenant) }}">
-        Edit
-    </a>
+                    <td>
+                        <a href="{{ route('tenant.edit', $tenant->id_tenant) }}">
+                            Edit
+                        </a>
 
-    <form action="{{ route('tenant.destroy', $tenant->id_tenant) }}"
-          method="POST"
-          style="display:inline;">
+                        <form action="{{ route('tenant.destroy', $tenant->id_tenant) }}"
+                              method="POST"
+                              style="display:inline;">
 
-        @csrf
-        @method('DELETE')
+                            @csrf
+                            @method('DELETE')
 
-        <button type="submit"
-                onclick="return confirm('yakin menghapusnya hayooo?')">
-            Hapus
-        </button>
-    </form>
-</td>
+                            <button type="submit"
+                                    onclick="return confirm('Yakin kamu menghapus hayooo?')">
+                                Hapus
+                            </button>
+
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="7">
+                        Belum ada data tenant.
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+</body>
+</html>
